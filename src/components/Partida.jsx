@@ -8,7 +8,6 @@ const Partida = ({partida}) => {
           <p>📅 {partida.data} ⏰ {partida.horario}</p>
           <p>🏟 {partida.local} | 🏆 {partida.campeonato}</p>
           <p>⚽ Placar: {partida.placar.time1} - {partida.placar.time2}</p>
-          <p>Status: {partida.status}</p>
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Partida from './components/Partida'
+import PartidaForm from './components/PartidaForm';
 
 function App() {
   const [partidas, setPartidas] = useState([
@@ -13,7 +14,7 @@ function App() {
       local: "Maracanã",
       campeonato: "Brasileirão",
       placar: { time1: 3, time2: 0 },
-      status: "Agendado"
+      ocorrido: true,
     },
     {
       id: 2,
@@ -24,7 +25,7 @@ function App() {
       local: "Maracanã",
       campeonato: "Brasileirão",
       placar: { time1: 0, time2: 0 },
-      status: "Agendado"
+      ocorrido: false,
     },
     {
       id: 3,
@@ -35,15 +36,37 @@ function App() {
       local: "Maracanã",
       campeonato: "Brasileirão",
       placar: { time1: 0, time2: 0 },
-      status: "Agendado"
+      ocorrido: false,
     }
   ])
+
+  const addPartida = (
+    time1, time2, data, horario, local, campeonato, placar
+  ) => 
+  {
+    const newPartidas = [...partidas,
+      { id: Math.floor(Math.random() * 10000), 
+        time1,
+        time2,
+        data,
+        horario,
+        local,
+        campeonato,
+        placar,
+        ocorrido: false,
+      },
+      ];
+    setPartidas(newPartidas);
+  };
   return (
-    <div>
+    <div className='app'>
+      <div>
       <h1>Lista de Jogos</h1>
       {partidas.map((partida) => (
-        <Partida  key={partida.id} partida={partida}/>
+        <Partida key={partida.id} partida={partida} />
       ))}
+      </div>
+      <PartidaForm addPartida={addPartida}/>
     </div>
   )
 }
