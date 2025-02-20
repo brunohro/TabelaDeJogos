@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import './App.css'
+import Partida from './components/Partida'
 
 function App() {
-  const [jogos, setJogos] = useState([
+  const [partidas, setPartidas] = useState([
     {
       id: 1,
       time1: "Flamengo",
@@ -40,14 +41,8 @@ function App() {
   return (
     <div>
       <h1>Lista de Jogos</h1>
-      {jogos.map((jogo) => (
-        <div key={jogo.id}>
-          <p>{jogo.time1} 🆚 {jogo.time2}</p>
-          <p>📅 {jogo.data} ⏰ {jogo.horario}</p>
-          <p>🏟 {jogo.local} | 🏆 {jogo.campeonato}</p>
-          <p>⚽ Placar: {jogo.placar.time1} - {jogo.placar.time2}</p>
-          <p>Status: {jogo.status}</p>
-        </div>
+      {partidas.map((partida) => (
+        <Partida  key={partida.id} partida={partida}/>
       ))}
     </div>
   )
